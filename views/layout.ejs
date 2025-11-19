@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TinyLink</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="bg-gray-50 text-slate-800 dark:bg-slate-900 dark:text-slate-200 transition-colors duration-200">
+  <header class="bg-white dark:bg-slate-800 border-b dark:border-slate-700">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold">TL</div>
+        <div>
+          <h1 class="text-lg font-semibold">TinyLink</h1>
+          <p class="text-xs text-slate-500 dark:text-slate-300/60">Simple URL shortener</p>
+        </div>
+      </a>
+
+      <div class="flex items-center gap-4">
+        <nav class="text-sm text-slate-600 dark:text-slate-300/70 hidden sm:block">
+          <a href="/" class="mr-4 hover:text-slate-900 dark:hover:text-white">Dashboard</a>
+          <a href="/healthz" class="hover:text-slate-900 dark:hover:text-white">Health</a>
+        </nav>
+
+        <button id="darkToggle" aria-label="Toggle dark mode"
+          class="flex items-center gap-2 px-3 py-1 rounded-md bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:shadow-sm">
+          <svg id="moon" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+          </svg>
+          <span id="darkLabel" class="text-sm">Dark</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 py-8">
+    <%- body %>
+  </main>
+
+  <footer class="mt-12 border-t dark:border-slate-700 bg-white dark:bg-slate-900">
+    <div class="max-w-7xl mx-auto px-4 py-4 text-sm text-slate-500 dark:text-slate-400">
+      Made for Aganitha take-home · <span id="year"></span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    (function () {
+      const root = document.documentElement;
+      const toggle = document.getElementById('darkToggle');
+      const label = document.getElementById('darkLabel');
+
+      const saved = localStorage.getItem('tiny:theme');
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (saved === 'dark' || (!saved && prefersDark)) {
+        root.classList.add('dark');
+        label.textContent = 'Dark';
+      } else {
+        root.classList.remove('dark');
+        label.textContent = 'Light';
+      }
+
+      toggle.addEventListener('click', () => {
+        const isDark = root.classList.toggle('dark');
+        localStorage.setItem('tiny:theme', isDark ? 'dark' : 'light');
+        label.textContent = isDark ? 'Dark' : 'Light';
+      });
+    })();
+  </script>
+</body>
+</html>
