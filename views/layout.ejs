@@ -8,7 +8,7 @@
 
   <link rel="stylesheet" href="/styles.css">
 </head>
-<body class="bg-gray-50 text-slate-800 dark:bg-slate-900 dark:text-slate-200 transition-colors duration-200">
+<body class="min-h-screen flex flex-col bg-gray-50 text-slate-800 dark:bg-slate-900 dark:text-slate-200 transition-colors duration-200">
   <header class="bg-white dark:bg-slate-800 border-b dark:border-slate-700">
     <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
       <a href="/" class="flex items-center gap-3">
@@ -36,14 +36,14 @@
     </div>
   </header>
 
-  <main class="max-w-7xl mx-auto px-4 py-8">
+  <main class="flex-1 max-w-7xl mx-auto px-4 py-8">
     <%- body %>
   </main>
 
-  <footer class="mt-12 border-t dark:border-slate-700 bg-white dark:bg-slate-900">
-    <div class="max-w-7xl mx-auto px-4 py-4 text-sm text-slate-500 dark:text-slate-400">
-      Made for Aganitha with ❤️ <span id="year"></span>
-    </div>
+  <footer class="border-t dark:border-slate-700 bg-white dark:bg-slate-900">
+  <div class="max-w-7xl mx-auto px-4 py-2 text-sm text-slate-500 dark:text-slate-400 text-center">
+    Made for Aganitha with ❤️ <span id="year"></span>
+  </div>
   </footer>
 
   <script>
