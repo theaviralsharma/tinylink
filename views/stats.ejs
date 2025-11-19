@@ -1,37 +1,71 @@
 <% layout('layout') %>
 
-<div class="bg-white dark:bg-slate-800 rounded-lg p-6 max-w-3xl mx-auto card-shadow border border-slate-100 dark:border-slate-700">
+<div
+  class="bg-white dark:bg-slate-800 rounded-lg p-6 max-w-3xl mx-auto card-shadow border border-slate-100 dark:border-slate-700"
+>
   <div class="flex items-start justify-between">
     <div>
-      <h2 class="text-2xl font-semibold mb-1">Stats — <span class="text-indigo-600 dark:text-indigo-400"><%= link.code %></span></h2>
-      <p class="text-sm text-slate-500 dark:text-slate-300/70">Short URL: <a class="text-indigo-600 dark:text-indigo-400" href="<%= baseUrl %>/<%= link.code %>"><%= baseUrl %>/<%= link.code %></a></p>
+      <h2 class="text-2xl font-semibold mb-1">
+        Stats —
+        <span class="text-indigo-600 dark:text-indigo-400"
+          ><%= link.code %></span
+        >
+      </h2>
+      <p class="text-sm text-slate-500 dark:text-slate-300/70">
+        Short URL:
+        <a
+          class="text-indigo-600 dark:text-indigo-400"
+          href="<%= baseUrl %>/<%= link.code %>"
+          ><%= baseUrl %>/<%= link.code %></a
+        >
+      </p>
     </div>
 
     <div class="text-right">
       <form action="/code/<%= link.code %>?_method=DELETE" method="post">
-        <button onclick="return confirm('Delete this link?')" class="text-sm text-red-600 dark:text-red-400">Delete</button>
+        <button
+          onclick="return confirm('Delete this link?')"
+          class="text-sm text-red-600 dark:text-red-400"
+        >
+          Delete
+        </button>
       </form>
     </div>
   </div>
 
   <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
     <div class="p-4 bg-slate-50 dark:bg-slate-900/40 rounded">
-      <div class="text-xs text-slate-500 dark:text-slate-300/70">Total clicks</div>
+      <div class="text-xs text-slate-500 dark:text-slate-300/70">
+        Total clicks
+      </div>
       <div class="text-2xl font-bold"><%= link.total_clicks %></div>
     </div>
 
     <div class="p-4 bg-slate-50 dark:bg-slate-900/40 rounded">
-      <div class="text-xs text-slate-500 dark:text-slate-300/70">Last clicked</div>
-      <div class="text-sm"><%= link.last_clicked ? new Date(link.last_clicked).toLocaleString() : '—' %></div>
+      <div class="text-xs text-slate-500 dark:text-slate-300/70">
+        Last clicked
+      </div>
+      <div class="text-sm">
+        <%= link.last_clicked ? new
+        Date(link.last_clicked).toLocaleString("en-IN", { timeZone:
+        "Asia/Kolkata" }) : '—' %>
+      </div>
     </div>
 
     <div class="p-4 bg-slate-50 dark:bg-slate-900/40 rounded">
       <div class="text-xs text-slate-500 dark:text-slate-300/70">Created</div>
-      <div class="text-sm"><%= new Date(link.created_at).toLocaleString() %></div>
+      <div class="text-sm">
+        <%= new Date(link.created_at).toLocaleString("en-IN", { timeZone:
+        "Asia/Kolkata" }) %>
+      </div>
     </div>
   </div>
 
   <div class="mt-6">
-    <a href="/" class="inline-flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300 hover:underline">← Back to dashboard</a>
+    <a
+      href="/"
+      class="inline-flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300 hover:underline"
+      >← Back to dashboard</a
+    >
   </div>
 </div>
